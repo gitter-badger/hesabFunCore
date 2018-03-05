@@ -1,0 +1,37 @@
+workspace:
+  base: /go
+  path: src/github.com/erfun-kh/hesabFunCore
+
+services:
+  database:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=hesub_fun
+      - MYSQL_ROOT_PASSWORD=123456
+
+pipeline:
+  test:
+    image: golang:latest
+    environment:
+      - MYSQL_DATABASE=hesub_fun
+      - MYSQL_ADDRESS=localhost
+      - MYSQL_PORT=3306
+      - MYSQL_PASSWORD=123456
+      - MYSQL_USERNAME=root
+    commands:
+      - sleep 15
+      - curl https://glide.sh/get | sh
+      - glide install
+      - cp -r .env.example .env
+      - go get github.com/rubenv/sql-migrate/...
+      - sql-migrate up
+      - sql-migrate up -env=seed
+
+  build:
+    image: golang:latest
+    commands:
+      - sleep 15
+      - curl https://glide.sh/get | sh
+      - glide install
+      - cp -r .env.example .env
+      - go build

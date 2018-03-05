@@ -19,7 +19,7 @@ pipeline:
       - MYSQL_PASSWORD=123456
       - MYSQL_USERNAME=root
     commands:
-      - sleep 15
+      - mkdir /go/bin
       - curl https://glide.sh/get | sh
       - glide install
       - cp -r .env.example .env
@@ -30,7 +30,7 @@ pipeline:
   build:
     image: golang:latest
     commands:
-      - sleep 15
+      - mkdir /go/bin
       - curl https://glide.sh/get | sh
       - glide install
       - cp -r .env.example .env

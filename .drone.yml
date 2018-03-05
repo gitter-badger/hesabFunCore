@@ -10,15 +10,6 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 pipeline:
-  build:
-    image: golang:latest
-    commands:
-      - mkdir /go/bin
-      - curl https://glide.sh/get | sh
-      - glide install
-      - cp -r .env.example .env
-      - go build
-
   test:
     image: golang:latest
     environment:
@@ -31,3 +22,9 @@ pipeline:
       - go get github.com/rubenv/sql-migrate/...
       - sql-migrate up -env=drone_migrate
       - sql-migrate up -env=drone_seed
+      - go test
+
+  build:
+    image: golang:latest
+    commands:
+      - go build

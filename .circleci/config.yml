@@ -39,4 +39,5 @@ jobs:
       - run: sql-migrate up -env=seed
       - run: cp -r .env.example .env
       - run: go build
-      - run: go test -v ./...
+      - run: go test -v ./...  -race -coverprofile=coverage.txt -covermode=atomic
+      - run: bash <(curl -s https://codecov.io/bash) ${CODECOV_TOKEN}

@@ -1,7 +1,0 @@
-mode: set
-gitlab.com/erfun/hesabFun/main.go:21.13,25.20 3 0
-gitlab.com/erfun/hesabFun/main.go:28.2,33.14 4 0
-gitlab.com/erfun/hesabFun/main.go:25.20,27.3 1 0
-gitlab.com/erfun/hesabFun/router.go:5.32,9.39 2 1
-gitlab.com/erfun/hesabFun/router.go:15.2,15.15 1 1
-gitlab.com/erfun/hesabFun/router.go:9.39,13.3 1 1
